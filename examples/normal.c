@@ -2,7 +2,7 @@
 // Reads integers and prints them in normal order
 #include <stdio.h>
 #include <stdlib.h>
-#include "../lib/queue.h"
+#include "../include/queue.h"
 
 
 #define ERROR(S, str, ...) { \
@@ -38,12 +38,13 @@ int main()
         }
 
         printf("The amount of integers read: %zu\n", queue_size(Q));
-        printf("Integers in normal order:\n");
+        printf("Integers in normal order: ");
         while (!queue_empty(Q)) {
                 int i = *(int*)queue_front(Q);
                 printf("%d ", i);
                 free(queue_pop(&Q));
         }
 
+        printf("\n");
         return 0;
 }
