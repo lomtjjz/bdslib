@@ -7,9 +7,8 @@ This is my implementation of basic data structures. It is designed in a way to b
 Implemented structures:
 
 * [X] stack
-* [ ] queue
+* [X] queue
 * [ ] list
-* [ ] dynamic array
 * [ ] priority queue
 * [ ] set
 * [ ] map
