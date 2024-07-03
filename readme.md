@@ -6,7 +6,7 @@ This is my implementation of basic data structures. It is designed in a way to b
 
 Implemented structures:
 
-* [ ] stack
+* [X] stack
 * [ ] queue
 * [ ] list
 * [ ] dynamic array
