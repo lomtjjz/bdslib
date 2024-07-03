@@ -13,7 +13,7 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
 ## Available functions
 
 * `stack_t stack_new()`
-   * Returns an initialised stack. Its return value must be assigned to newly created variables before performing any other operations
+  * Returns an initialised stack. Its return value must be assigned to newly created variables before performing any other operations
 * `bool stack_empty(stack_t)`
   * Returns true, if stack is empty.
 * `size_t stack_size(stack_t)`
