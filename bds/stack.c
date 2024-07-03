@@ -14,7 +14,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #include <stdlib.h>
 #include <stddef.h>
-#include "stack.h"
+#include "../include/stack.h"
 
 
 
