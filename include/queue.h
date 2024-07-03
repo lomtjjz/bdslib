@@ -30,13 +30,28 @@ typedef struct {
 } queue_t;
 
 
-extern queue_t queue_new();
+// Returns initialised queue. You must assign it to newly created variable 
+// before doing anything with it.
+extern queue_t  queue_new();
 
-extern bool queue_empty(queue_t);
-extern size_t queue_size(queue_t);
+// Returns queue size.
+extern size_t   queue_size(queue_t);
 
-extern int queue_push(queue_t*, void*);
-extern void *queue_pop(queue_t*);
-extern void* queue_front(queue_t);
+// Returns true if queue is empty.
+extern bool     queue_empty(queue_t);
+
+// Push new item to the queue. Please note that it pushes THE POINTER
+// Allocating and freeing the data is up to the caller.
+// Returns 0 on success, 1 on failure.
+extern int      queue_push(queue_t*, void*);
+
+// Pops item from the queue and returns it.
+// It won't touch the data; freeing it is up to the caller.
+// If the queue is empty, returns NULL.
+extern void*    queue_pop(queue_t*);
+
+// Returns the front element if there is any.
+// Returns NULL otherwise.
+extern void*    queue_front(queue_t);
 
 #endif
