@@ -1,6 +1,5 @@
----
-header: `queue.h`
----
+Header: `queue.h`
+
 # Queue
 If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) about it.
 

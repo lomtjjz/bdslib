@@ -1,6 +1,5 @@
----
-header: `stack.h`
----
+Header: `stack.h`
+
 # Stack
 If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) about it.
 
