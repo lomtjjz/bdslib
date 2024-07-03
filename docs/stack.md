@@ -2,6 +2,7 @@
 header: `stack.h`
 ---
 # Stack
+If you don't know what it is, here is a [wiki](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) article about it.
 
 ## Data types
 
