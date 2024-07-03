@@ -2,7 +2,7 @@
 // Reads integers and prints them in reverse
 #include <stdio.h>
 #include <stdlib.h>
-#include "../lib/stack.h"
+#include "../include/stack.h"
 
 
 #define ERROR(S, str, ...) { \
@@ -39,12 +39,13 @@ int main()
 
         printf("The amount of integers read: %zu\n", stack_size(S));
         
-        printf("Integers in reverse:\n");
+        printf("Integers in reverse: ");
         while (!stack_empty(S)) {
                 int i = *(int*)stack_top(S);
                 printf("%d ", i);
                 free(stack_pop(&S));
         }
 
+        printf("\n");
         return 0;
 }
