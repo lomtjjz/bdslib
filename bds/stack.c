@@ -25,7 +25,7 @@ stack_t stack_new()
 
 bool stack_empty(const stack_t S)
 {
-	return S.head == NULL;
+	return S.size == 0;
 }
 
 size_t stack_size(const stack_t S)
