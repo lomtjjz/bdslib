@@ -53,17 +53,17 @@ int deque_allocate(deque_t *Q, size_t size)
 }
 
 
-size_t __next_size(deque_t Q)
+static size_t __next_size(deque_t Q)
 {
         // The actual length of size_t is platform-dependent, thus we cannot
         // use __builtin_clzX(). One solution might be just converting
-        // the capacity to `long`, but I don't like that either. It would not
+        // the capacity to `long`, but I don't like that either as it would not
         // compile on 16bit machines.
         if (Q.capacity == 0) return 1;
 
-        size_t lg2 = 0;
+        int lg2 = 0;
         while (Q.capacity >= ((size_t)1<<lg2)) lg2++;
-        return (1<<lg2);
+        return (size_t)1<<lg2;
 }
 
 int deque_push_front(deque_t *Q, void *data)
