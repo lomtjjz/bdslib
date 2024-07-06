@@ -34,7 +34,7 @@ size_t deque_size(deque_t Q)
 }
 
 
-int deque_allocate(deque_t *Q, size_t size)
+int deque_resize(deque_t *Q, size_t size)
 {
         void** new = (void**)malloc(sizeof(void*)*size);
         if (new == NULL) return 1;
@@ -69,7 +69,7 @@ static size_t __next_size(deque_t Q)
 int deque_push_front(deque_t *Q, void *data)
 {
         if (deque_size(*Q) == Q->capacity) {
-                if (deque_allocate(Q, __next_size(*Q))) return 1;
+                if (deque_resize(Q, __next_size(*Q))) return 1;
         }
 
         Q->data[Q->head] = data;
@@ -83,7 +83,7 @@ int deque_push_front(deque_t *Q, void *data)
 int deque_push_back(deque_t *Q, void *data)
 {
         if (deque_size(*Q) == Q->capacity) {
-                if (deque_allocate(Q, __next_size(*Q))) return 1;
+                if (deque_resize(Q, __next_size(*Q))) return 1;
         }
 
         Q->tail = (Q->tail - 1 + Q->capacity) % Q->capacity;

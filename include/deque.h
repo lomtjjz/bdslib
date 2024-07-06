@@ -31,7 +31,7 @@ deque_t deque_new();
 bool deque_empty(deque_t);
 size_t deque_size(deque_t);
 
-int deque_allocate(deque_t*, size_t);
+int deque_resize(deque_t*, size_t);
 
 int deque_push_front(deque_t*, void*);
 int deque_push_back(deque_t*, void*);
