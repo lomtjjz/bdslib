@@ -23,6 +23,12 @@ deque_t deque_new()
         return (deque_t){0, 0, 0, 0, NULL};
 }
 
+void deque_free(deque_t *Q)
+{
+        free(Q->data);
+        *Q = deque_new();
+}
+
 bool deque_empty(deque_t Q)
 {
         return Q.size == 0;
@@ -36,11 +42,18 @@ size_t deque_size(deque_t Q)
 
 int deque_resize(deque_t *Q, size_t size)
 {
+        if (size == Q->size) return 0;
+        if (size == 0) {
+                deque_free(Q);
+                return 0;
+        }
+
         void** new = (void**)malloc(sizeof(void*)*size);
         if (new == NULL) return 1;
 
-        if (!deque_empty(*Q)) {
-                for (size_t i = 0; i < Q->size; i++) {
+        if (Q->capacity != 0) {
+                size_t mn = min(Q->size, size);
+                for (size_t i = 0; i < mn; i++) {
                         new[i] = Q->data[(i + Q->tail) % Q->capacity];
                 }
                 free(Q->data);

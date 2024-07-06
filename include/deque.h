@@ -27,6 +27,7 @@ typedef struct {
 
 
 deque_t deque_new();
+void deque_free(deque_t);
 
 bool deque_empty(deque_t);
 size_t deque_size(deque_t);
