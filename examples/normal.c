@@ -5,9 +5,9 @@
 #include "../include/queue.h"
 
 
-#define ERROR(S, str, ...) { \
+#define ERROR(Q, str, ...) { \
         fprintf(stderr, str, ##__VA_ARGS__); \
-        while (!queue_empty(S)) free(queue_pop(&S)); \
+        while (Q.size) free(queue_pop(&Q)); \
         exit(1); \
 }
 
@@ -34,12 +34,12 @@ int main()
         }
 
         if (ferror(stdin)) {
-                ERROR(Q, "Error reading integer number %zu!\n", queue_size(Q)+1);
+                ERROR(Q, "Error reading integer number %zu!\n", Q.size+1);
         }
 
-        printf("The amount of integers read: %zu\n", queue_size(Q));
+        printf("The amount of integers read: %zu\n", Q.size);
         printf("Integers in normal order: ");
-        while (!queue_empty(Q)) {
+        while (Q.size) {
                 int i = *(int*)queue_front(Q);
                 printf("%d ", i);
                 free(queue_pop(&Q));

@@ -30,7 +30,7 @@ int stack_push(stack_t *restrict S, void *data)
 	if (new == NULL) return 1;
 	new->data = data;
 
-	if (!stack_empty(*S)) new->head = S->head;
+	if (S->size) new->head = S->head;
 	S->head = new;
 
 	S->size++;
@@ -39,7 +39,7 @@ int stack_push(stack_t *restrict S, void *data)
 
 void* stack_pop(stack_t *restrict S)
 {
-	if (stack_empty(*S)) return NULL;
+	if (!S->size) return NULL;
 
 	void *data = S->head->data;
 
@@ -54,6 +54,6 @@ void* stack_pop(stack_t *restrict S)
 
 void *stack_top(const stack_t S) 
 {
-	if (stack_empty(S)) return NULL;
+	if (!S.size) return NULL;
 	else return S.head->data;
 }

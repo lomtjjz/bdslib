@@ -87,19 +87,6 @@ extern void*                    list_front(list_t);
 extern void*                    list_back(list_t);
 
 
-// Returns sentinel node of a list.
-extern struct list_node*        list_sentinel(list_t*);
-
-// Returns data stored in a node.
-extern void*                    list_node_data(struct list_node*);
-
-// Returns previous node.
-extern struct list_node*        list_node_prev(struct list_node*);
-
-// Returns next node.
-extern struct list_node*        list_node_next(struct list_node*);
-
-
 // Inserts a new node after the provided node.
 // Returns nonzero value on failure.
 extern int                      list_node_insert(struct list_node*, void*);

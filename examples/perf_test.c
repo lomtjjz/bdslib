@@ -1,8 +1,8 @@
 // Example program demonstaring the usage of list and deque
 // Measures the efficiency of different data structures
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 #include "../include/deque.h"
 #include "../include/list.h"
 
@@ -21,11 +21,11 @@
         printf(str, to_millis(end) - to_millis(begin)); \
 }
 
-void swap(void *A, void *B)
+void swap(void **A, void **B)
 {
-        void *tmp = A;
-        A = B;
-        B = tmp;
+        void *tmp = *A;
+        *A = *B;
+        *B = tmp;
 }
 
 int main()
@@ -61,11 +61,11 @@ int main()
 
         printf("Delete %d elements:\n", DATA_SIZE);
         MEASURE("  * list: %lf ms\n", {
-                while (!list_empty(L)) list_pop_back(&L);
+                while (L.size) list_pop_back(&L);
         });
 
         MEASURE("  * deque: %lf ms\n", {
-                while (!deque_empty(Q)) deque_pop_back(&Q);
+                while (Q.size) deque_pop_back(&Q);
         });
         printf("\n\n");
 
@@ -74,7 +74,7 @@ int main()
         MEASURE("  * list: %lf ms\n", {
                 list_push_back(&L, NULL);
                 for (int i = 1; i < RAND_SIZE; i++) {
-                        if (list_insert(&L, NULL, rand()%list_size(L))) {
+                        if (list_insert(&L, NULL, rand()%L.size)) {
                                 printf("Error inserting!\n");
                                 return 1;
                         }
@@ -83,12 +83,12 @@ int main()
         MEASURE("  * deque: %lf ms\n", {
                 deque_push_back(&Q, NULL);
                 for (int i = 1; i < RAND_SIZE; i++) {
-                        int at = rand()%deque_size(Q);
+                        int at = rand()%Q.size;
                         if (deque_push_back(&Q, NULL)) {
                                 printf("Error pushing new element!\n");
                                 return 1;
                         };
-                        for (int j = deque_size(Q)-1; j > at; j--) {
+                        for (int j = Q.size-1; j > at; j--) {
                                 swap(__deque_at(Q, j-1), __deque_at(Q, j));
                         }
                 }
@@ -97,11 +97,11 @@ int main()
 
         printf("Remove %d elements (in random order)\n", RAND_SIZE);
         MEASURE("  * list: %lf ms\n", {
-                while (!list_empty(L)) list_erase(&L, rand()%list_size(L));
+                while (L.size) list_erase(&L, rand()%L.size);
         });
         MEASURE("  * deque: %lf ms\n", {
-                while (!deque_empty(Q)) {
-                        for (int i = rand()%deque_size(Q)+1; i < deque_size(Q); i++) {
+                while (Q.size) {
+                        for (int i = rand()%Q.size+1; i < Q.size; i++) {
                                 swap(__deque_at(Q, i-1), __deque_at(Q, i));
                         }
                         deque_pop_back(&Q);

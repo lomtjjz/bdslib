@@ -37,12 +37,12 @@ static struct list_node *__list_at(list_t *L, size_t at)
 
         if (at <= L->size/2) {
                 at = 0;
-                it = list_node_next(it);
-                while (at--) it = list_node_next(it);
+                it = it->next;
+                while (at--) it = it->next;
         } else {
                 at = L->size-at;
-                it = list_node_prev(it);
-                while (at--) it = list_node_prev(it);
+                it = it->prev;
+                while (at--) it = it->prev;
         }
 
         return it;
@@ -72,13 +72,13 @@ int list_insert(list_t *L, void *data, size_t at)
 
 void *list_pop_front(list_t *L)
 {
-        if (list_empty(*L)) return NULL;
+        if (!L->size) return NULL;
         return list_node_erase(L->sentinel.next);
 }
 
 void *list_pop_back(list_t *L)
 {
-        if (list_empty(*L)) return NULL;
+        if (!L->size) return NULL;
         return list_node_erase(L->sentinel.prev);
 }
 
@@ -95,13 +95,13 @@ void *list_erase(list_t *L, size_t at)
 
 void *list_front(list_t L)
 {
-        if (list_empty(L)) return NULL;
+        if (!L.size) return NULL;
         return L.sentinel.next->data;
 }
 
 void *list_back(list_t L)
 {
-        if (list_empty(L)) return NULL;
+        if (!L.size) return NULL;
         return L.sentinel.prev->data;
 }
 

@@ -31,7 +31,7 @@ int queue_push(queue_t *restrict Q, void *data)
         new->data = data;
         new->next = 0;
 
-        if (queue_empty(*Q)) Q->tail = new;
+        if (!Q->size) Q->tail = new;
         else Q->head->next = new;
 
         Q->head = new;
@@ -41,7 +41,7 @@ int queue_push(queue_t *restrict Q, void *data)
 
 extern void *queue_pop(queue_t *restrict Q)
 {
-        if (queue_empty(*Q)) return NULL;
+        if (!Q->size) return NULL;
 
         struct queue_node *old = Q->tail;
         void *data = old->data;
@@ -56,6 +56,6 @@ extern void *queue_pop(queue_t *restrict Q)
 
 extern void* queue_front(const queue_t Q)
 {
-        if (queue_empty(Q)) return NULL;
+        if (!Q.size) return NULL;
         return Q.tail->data;
 }

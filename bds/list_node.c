@@ -39,33 +39,6 @@ static void *__unlink(struct list_node *node)
 }
 
 
-
-struct list_node *list_sentinel(list_t *L)
-{
-        return &L->sentinel;
-}
-
-void**  __list_node_data(struct list_node *node)
-{
-        return &node->data;
-}
-
-void *list_node_data(struct list_node *node)
-{
-        return node->data;
-}
-
-struct list_node *list_node_prev(struct list_node *node)
-{
-        return node->prev;
-}
-
-struct list_node *list_node_next(struct list_node *node)
-{
-        return node->next;
-}
-
-
 int list_node_insert(struct list_node *node, void *data)
 {
         struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));

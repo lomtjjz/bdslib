@@ -5,9 +5,9 @@
 #include "../include/deque.h"
 
 
-#define ERROR(S, str, ...) { \
+#define ERROR(Q, str, ...) { \
         fprintf(stderr, str, ##__VA_ARGS__); \
-        while (!queue_empty(S)) free(queue_pop(&S)); \
+        while (Q.size) free(queue_pop(&S)); \
         exit(1); \
 }
 
@@ -35,10 +35,10 @@ int main()
 
         while (true) {
                 printf("\e[1;1H\e[2J");
-                printf("Todo list (%d elements, %d space left):\n", deque_size(Q), Q.capacity-deque_size(Q));
+                printf("Todo list (%d elements, %d space left):\n", Q.size, Q.capacity-Q.size);
 
-                if (!deque_empty(Q)) printf("\n");
-                for (int i = 0; i < deque_size(Q); i++) {
+                if (Q.size) printf("\n");
+                for (int i = 0; i < Q.size; i++) {
                         printf("%d.  %s\n", i, (char*)deque_at(Q, i));
                 }
                 printf("\n");

@@ -7,7 +7,7 @@
 
 #define ERROR(S, str, ...) { \
         fprintf(stderr, str, ##__VA_ARGS__); \
-        while (!stack_empty(S)) free(stack_pop(&S)); \
+        while (S.size) free(stack_pop(&S)); \
         exit(1); \
 }
 
@@ -34,13 +34,13 @@ int main()
         }
 
         if (ferror(stdin)) {
-                ERROR(S, "Error reading integer number %zu!\n", stack_size(S)+1);
+                ERROR(S, "Error reading integer number %zu!\n", S.size+1);
         }
 
-        printf("The amount of integers read: %zu\n", stack_size(S));
+        printf("The amount of integers read: %zu\n", S.size);
         
         printf("Integers in reverse: ");
-        while (!stack_empty(S)) {
+        while (S.size) {
                 int i = *(int*)stack_top(S);
                 printf("%d ", i);
                 free(stack_pop(&S));
