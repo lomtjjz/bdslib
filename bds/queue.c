@@ -20,7 +20,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 queue_t queue_new()
 {
-        return (queue_t){NULL, 0};
+        return (queue_t){NULL, NULL, 0};
 }
 
 bool queue_empty(const queue_t Q)

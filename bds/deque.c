@@ -52,7 +52,7 @@ int deque_resize(deque_t *restrict Q, size_t size)
         if (new == NULL) return 1;
 
         if (Q->capacity != 0) {
-                size_t mn = min(Q->size, size);
+                size_t mn = (Q->size < size ? Q->size : size);
                 for (size_t i = 0; i < mn; i++) {
                         new[i] = Q->data[(i + Q->tail) % Q->capacity];
                 }
