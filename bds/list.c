@@ -123,5 +123,3 @@ void *list_at(list_t L, size_t at)
 
         return it->data;
 }
-
-
