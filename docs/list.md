@@ -64,6 +64,24 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
   * If empty, returns NULL.
 
 
+### List nodes
+* `struct list_node *list_sentinel(list_t*)`
+  * Returns sentinel node of a list.
+* `void *list_node_data(struct list_node*)`
+  * Returns data stored in a node.
+* `struct list_node *list_node_prev(struct list_node*)`
+  * Returns previous node.
+* `struct list_node *list_node_next(struct list_node*)`
+  * Returns next node.
+
+* `int list_node_insert(struct list_node*, void*)`
+  * Inserts a new node after the provided node.
+  * Returns nonzero value on failure.
+* `void* list_node_erase(struct list_node*);`
+  * Removes the node and returns its value.
+  * Returns NULL if provided node is a sentinel node.
+
+
 ## Very important information
 
 - List is implemented using *doubly-linked list* resulting in at most `N/2` iterations (which is still `O(N)`).
@@ -74,3 +92,19 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
 ## Example usage
 
 See [examples/perf_test.c](/examples/perf_test.c)
+
+
+### How to iterate through a list
+```c
+struct list_node *it = list_sentinel(&L);
+do {
+        // ...iterate in normal order
+} while ((it = list_next(L)) != list_sentinel(L));
+```
+
+```c
+struct list_node *it = list_sentinel(&L);
+do {
+        // ...iterate in reverse order
+} while ((it = list_prev(L)) != list_sentinel(L));
+```

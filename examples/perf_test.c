@@ -21,7 +21,12 @@
         printf(str, to_millis(end) - to_millis(begin)); \
 }
 
-
+void swap(void *A, void *B)
+{
+        void *tmp = A;
+        A = B;
+        B = tmp;
+}
 
 int main()
 {
@@ -84,9 +89,7 @@ int main()
                                 return 1;
                         };
                         for (int j = deque_size(Q)-1; j > at; j--) {
-                                void *tmp = Q.data[(Q.tail+j-1) % Q.capacity];
-                                Q.data[(Q.tail+j-1) % Q.capacity] = Q.data[(Q.tail+j) % Q.capacity];
-                                Q.data[(Q.tail+j) % Q.capacity] = tmp;
+                                swap(__deque_at(Q, j-1), __deque_at(Q, j));
                         }
                 }
         });
@@ -99,9 +102,7 @@ int main()
         MEASURE("  * deque: %lf ms\n", {
                 while (!deque_empty(Q)) {
                         for (int i = rand()%deque_size(Q)+1; i < deque_size(Q); i++) {
-                                void *tmp = Q.data[(Q.tail+i-1) % Q.capacity];
-                                Q.data[(Q.tail+i-1) % Q.capacity] = Q.data[(Q.tail+i) % Q.capacity];
-                                Q.data[(Q.tail+i) % Q.capacity] = tmp;
+                                swap(__deque_at(Q, i-1), __deque_at(Q, i));
                         }
                         deque_pop_back(&Q);
                 }
