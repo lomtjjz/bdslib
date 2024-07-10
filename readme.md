@@ -16,4 +16,4 @@ Implemented structures:
 
 ---
 
-Note: The bdslib is licensed under LGPLv3 license. For more information visit <https://www.gnu.org/licenses/>
+Note: bdslib is licensed under LGPLv3 license. For more information visit <https://www.gnu.org/licenses/>
