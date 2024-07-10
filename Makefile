@@ -14,6 +14,6 @@ $(TARGET): $(OBJS)
 	$(CC) $(CCFLAGS) -c $^ -o $@
 
 clean:
-	rm $(TARGET) $(OBJS)
+	rm -f $(TARGET) $(OBJS)
 
 .PHONY: all clean
