@@ -24,6 +24,15 @@ This is intentional. The reasoning is to make the library more convenient for so
 Because the goal is not to replicate the entire C++ standard library in C. This repo is more about the DSs themselves rather than any standards.
 
 
+## Why are there functions that just return struct values?
+
+You may have noticed one-line functions like `stack_empty()` or `list_sentinel()`. They are here for you to use them instead of accessing things directly.
+
+You see, DSs are esencially black boxes. You can operate them without knowing the internals.
+
+It's still okay to write `S.size` instead of `stack_size(S)`. Just be aware that the struct layout of the DS you are using may change with following commits. Functions are more likely (tho not guaranteed) to remain.
+
+
 ## Data structures are at the core of CS and you licenced them with LGPLv3! How dare you!
 
 This implementation of data structures is licensed under LGPLv3, not the data structures themselves. You could try implementing them yourself and would you be surprised to see your code 90% the same. But that's ok!
