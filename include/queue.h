@@ -18,11 +18,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stddef.h>
 
 
+
+// Used internally.
 struct queue_node {
         struct queue_node *next;
         void *data;
 };
 
+// The queue itself.
+// You must initialise it with `queue_new()`.
 typedef struct {
         struct queue_node *head;
         struct queue_node *tail;
@@ -30,28 +34,37 @@ typedef struct {
 } queue_t;
 
 
-// Returns initialised queue. You must assign it to newly created variable 
-// before doing anything with it.
+
+// Returns an initialised queue. 
+// Its return value must be assigned to newly created variables before
+// performing any other operations.
 extern queue_t  queue_new();
+
+// Returns true, if queue is empty.
+extern bool     queue_empty(queue_t);
 
 // Returns queue size.
 extern size_t   queue_size(queue_t);
 
-// Returns true if queue is empty.
-extern bool     queue_empty(queue_t);
 
-// Push new item to the queue. Please note that it pushes THE POINTER
-// Allocating and freeing the data is up to the caller.
-// Returns 0 on success, 1 on failure.
+// Pushes new element to the queue.
+// Returns nonzero value on success.
+//
+// Please note that it pushes THE POINTER !!!
+// Allocating and freeing data is up to the caller.
 extern int      queue_push(queue_t*, void*);
 
-// Pops item from the queue and returns it.
-// It won't touch the data; freeing it is up to the caller.
-// If the queue is empty, returns NULL.
+// Pops last element from the queue and returns it.
+// If empty, returns NULL.
+//
+// It won't touch the pointer; freeing it is up to the caller.
 extern void*    queue_pop(queue_t*);
 
-// Returns the front element if there is any.
-// Returns NULL otherwise.
+
+// Returns first element from the queue.
+// If empty, returns NULL.
 extern void*    queue_front(queue_t);
+
+
 
 #endif

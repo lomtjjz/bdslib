@@ -18,6 +18,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stddef.h>
 
 
+
+// The stack itself.
+// You must initialise it with `stack_new()`.
 typedef struct stack_node {
     struct stack_node *head;
     void *data;
@@ -25,29 +28,40 @@ typedef struct stack_node {
 } stack_t;
 
 
-// Returns initialised stack. You must assign it to newly created variable 
-// before doing anything with it.
+
+// Returns an initialised stack. 
+// Its return value must be assigned to newly created variables before
+// performing any other operations
 extern stack_t  stack_new();
+
+
+//Returns true, if stack is empty.
+extern bool     stack_empty(const stack_t);
 
 // Returns stack size.
 extern size_t   stack_size(const stack_t);
 
-// Returns true if stack is empty.
-extern bool     stack_empty(const stack_t);
 
-// Push new item to the stack. Please note that it pushes THE POINTER
-// Allocating and freeing the data is up to the caller.
-// Returns 0 on success, 1 on failure.
+// Pushes new element to the stack.
+// Returns nonzero value on success.
+//
+// Please note that it pushes THE POINTER !!!
+// Allocating and freeing data is up to the caller.
 extern int      stack_push(stack_t *restrict, void*);
 
+// Pops last element from the stack and returns it.
+// If empty, returns NULL.
+//
 // Pops item from the stack and returns it.
 // It won't touch the data; freeing it is up to the caller.
 // If the stack is empty, returns NULL.
 extern void*    stack_pop(stack_t *restrict);
 
-// Returns the top element if there is any.
-// Returns NULL otherwise.
+
+// Returns last element from the stack.
+// If empty, returns NULL.
 extern void*    stack_top(const stack_t);
+
 
 
 #endif
