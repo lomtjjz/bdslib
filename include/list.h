@@ -20,8 +20,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 struct list_node {
+        struct list_node *sentinel;
         struct list_node *prev;
         struct list_node *next;
+
         void *data;
 };
 
@@ -54,6 +56,7 @@ extern void *list_back(list_t);
 extern void *list_at(list_t, size_t);
 
 
+
 extern struct list_node *list_sentinel(list_t*);
 extern void *list_node_data(struct list_node*);
 extern struct list_node *list_node_prev(struct list_node*);
@@ -61,6 +64,7 @@ extern struct list_node *list_node_next(struct list_node*);
 
 extern int list_node_insert(struct list_node*, void*);
 extern void *list_node_erase(struct list_node*);
+
 
 
 #endif

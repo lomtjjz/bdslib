@@ -17,57 +17,16 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include "../include/list.h"
 
-// ---
-// List node
-
-struct list_node *list_sentinel(list_t *L)
-{
-        return &L->sentinel;
-}
-
-void *list_node_data(struct list_node *node)
-{
-        return node->data;
-}
-
-struct list_node *list_node_prev(struct list_node *node)
-{
-        return node->prev;
-}
-
-struct list_node *list_node_next(struct list_node *node)
-{
-        return node->next;
-}
-
-
-int list_node_insert(struct list_node *node, void *data)
-{
-        struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));
-        if (new == NULL) return 1;
-        __link(node, new);
-        new->data = new;
-        
-        return 0;
-}
-
-void *list_node_erase(struct list_node *node)
-{
-        __unlink(node);
-
-        void *old = node->data;
-        free(node);
-        return old;
-}
-// ---
 
 
 void list_new(list_t *L)
 {
         L->size = 0;
-        L->sentinel.data = 0;
+
+        L->sentinel.sentinel = &L->sentinel;
         L->sentinel.prev = &L->sentinel;
         L->sentinel.next = &L->sentinel;
+        L->sentinel.data = 0;
 }
 
 bool list_empty(list_t L)
@@ -88,56 +47,26 @@ static struct list_node *__list_at(list_t *L, size_t at)
 
         if (at <= L->size/2) {
                 at = 0;
-                it = it->next;
-                while (at--) it = it->next;
+                it = list_node_next(it);
+                while (at--) it = list_node_next(it);
         } else {
                 at = L->size-at;
-                it = it->prev;
-                while (at--) it = it->prev;
+                it = list_node_prev(it);
+                while (at--) it = list_node_prev(it);
         }
 
         return it;
-}
-
-static void __link(struct list_node *at, struct list_node *node)
-{
-        node->prev = at;
-        node->next = at->next;
-
-        node->prev->next = node;
-        node->next->prev = node;
-}
-
-static void *__unlink(struct list_node *node)
-{
-        node->next->prev = node->prev;
-        node->prev->next = node->next;
-
-        void *data = node->data;
-        free(node);
-        return data;
 }
 
 
 int list_push_front(list_t *L, void *data)
 {
         return list_node_insert(&L->sentinel, data);
-        struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));
-        if (new == NULL) return 1;
-
-        __link(&L->sentinel, new);
-        new->data = data;
-        L->size++;
 }
 
 int list_push_back(list_t *L, void *data)
 {
-        struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));
-        if (new == NULL) return 1;
-
-        __link(L->sentinel.prev, new);
-        new->data = data;
-        L->size++;
+        return list_node_insert(L->sentinel.prev, data);
 }
 
 int list_insert(list_t *L, void *data, size_t at)
@@ -146,26 +75,21 @@ int list_insert(list_t *L, void *data, size_t at)
 
         struct list_node *it = __list_at(L, at);
         if (it == NULL) return 1;
-
-        struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));
-        if (new == NULL) return 1;
-
-        __link(it, new);
-        new->data = data;
-        return 0;
+        
+        return list_node_insert(it, data);
 }
 
 
 void *list_pop_front(list_t *L)
 {
         if (list_empty(*L)) return NULL;
-        return __unlink(L->sentinel.next);
+        return list_node_erase(L->sentinel.next);
 }
 
 void *list_pop_back(list_t *L)
 {
         if (list_empty(*L)) return NULL;
-        return __unlink(L->sentinel.prev);
+        return list_node_erase(L->sentinel.prev);
 }
 
 void *list_erase(list_t *L, size_t at)
@@ -175,8 +99,9 @@ void *list_erase(list_t *L, size_t at)
         struct list_node *old = __list_at(L, at);
         if (old == NULL) return NULL;
 
-        return __unlink(old);
+        return list_node_erase(old);
 }
+
 
 void *list_front(list_t L)
 {
