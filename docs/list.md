@@ -82,6 +82,11 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
   * Returns NULL if provided node is a sentinel node.
 
 
+### Extra
+* `void** __list_node_data(struct list_node*)`
+  * Same as `list_node_data()`, except returns the pointer to where
+  `list_node_data()` value is stored.`
+
 ## Very important information
 
 - List is implemented using *doubly-linked list* resulting in at most `N/2` iterations (which is still `O(N)`).

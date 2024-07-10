@@ -45,6 +45,11 @@ struct list_node *list_sentinel(list_t *L)
         return &L->sentinel;
 }
 
+void**  __list_node_data(struct list_node *node)
+{
+        return &node->data;
+}
+
 void *list_node_data(struct list_node *node)
 {
         return node->data;
