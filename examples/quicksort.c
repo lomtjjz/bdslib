@@ -22,7 +22,7 @@ void swap(void **A, void **B)
 bool flag = false;
 void printall()
 {
-        struct list_node *it = list_sentinel(&L);
+        struct list_node *it = &L.sentinel;
         printf("\033[F\033[F");
         
         
@@ -32,10 +32,10 @@ void printall()
         flag = !flag;
 
 
-        it = list_node_next(it);
+        it = it->next;
         do {
-                printf("%d", *(int*)list_node_data(it));
-        } while ((it = list_node_next(it)) != list_sentinel(&L));
+                printf("%d", *(int*)it->data);
+        } while ((it = it->next) != &L.sentinel);
         printf("\n");
         usleep(SLEEP_MILLIS);
 }
@@ -46,19 +46,20 @@ void quicksort(struct list_node *l, struct list_node *r)
 
         struct list_node *it = l;
         struct list_node *m = l;
-        struct list_node *cmp = list_node_prev(r);
+        struct list_node *cmp = r->prev;
+
         if (cmp == l) return;
         while (it != cmp) {
-                int a = *(int*)list_node_data(it);
-                int b = *(int*)list_node_data(cmp);
+                int a = *(int*)it->data;
+                int b = *(int*)cmp->data;
 
                 if (a <= b) {
-                        swap(__list_node_data(it), __list_node_data(m));
-                        m = list_node_next(m);
+                        swap(&it->data, &m->data);
+                        m = m->next;
                 }
-                it = list_node_next(it);
+                it = it->next;
         }
-        swap(__list_node_data(cmp), __list_node_data(m));
+        swap(&cmp->data, &m->data);
         printall();
 
         quicksort(l, m);
@@ -74,8 +75,8 @@ int main()
         for (int i = 0; i < LIST_SIZE; i++) list_push_back(&L, data+i);
         printf("\n\n");
 
-        struct list_node *s = list_sentinel(&L);
-        quicksort(list_node_next(s), s);
+        struct list_node *s = &L.sentinel;
+        quicksort(s->next, s);
         printall();
 
         return 0;
