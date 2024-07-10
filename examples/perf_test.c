@@ -8,18 +8,14 @@
 
 #define DATA_SIZE (10000000)
 #define RAND_SIZE (10000)
-deque_t ord;
 
-deque_t Q;
-list_t L;
 
 #define to_millis(x) (1e3 * (x).tv_sec + 1e-6 * (x).tv_nsec)
-
 #define MEASURE(str, ...) { \
         struct timespec begin, end; \
         clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &begin); \
         \
-        {__VA_ARGS__} \
+        __VA_ARGS__ \
         \
         clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end); \
         printf(str, to_millis(end) - to_millis(begin)); \
@@ -32,7 +28,8 @@ int main()
         srand(time(NULL));
         printf("list and deque performance compared\n\n");
 
-        Q = deque_new();
+        deque_t Q = deque_new();
+        list_t L;
         list_new(&L);
 
 
