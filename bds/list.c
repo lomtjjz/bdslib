@@ -26,7 +26,7 @@ void list_new(list_t *L)
         L->sentinel.sentinel = &L->sentinel;
         L->sentinel.prev = &L->sentinel;
         L->sentinel.next = &L->sentinel;
-        L->sentinel.data = 0;
+        L->sentinel.data = L;
 }
 
 bool list_empty(list_t L)
