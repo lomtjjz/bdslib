@@ -99,9 +99,17 @@ extern struct list_node*        list_node_prev(struct list_node*);
 // Returns next node.
 extern struct list_node*        list_node_next(struct list_node*);
 
+
+// Inserts a new node after the provided node.
+// Returns nonzero value on failure.
 extern int                      list_node_insert(struct list_node*, void*);
+
+// Removes the node and returns its value.
+// Returns NULL if provided node is a sentinel node.
 extern void*                    list_node_erase(struct list_node*);
 
-
+// Same as `list_node_data()`, except returns the pointer to where
+// `list_node_data()` value is stored.
+extern void**                   __list_node_data(struct list_node*);
 
 #endif

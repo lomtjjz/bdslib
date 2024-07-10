@@ -29,16 +29,6 @@ void list_new(list_t *L)
         L->sentinel.data = L;
 }
 
-bool list_empty(list_t L)
-{
-        return L.size == 0;
-}
-
-size_t list_size(list_t L)
-{
-        return L.size;
-}
-
 
 static struct list_node *__list_at(list_t *L, size_t at)
 {

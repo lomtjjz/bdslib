@@ -7,40 +7,47 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
 ## Data types
 
 
-* `queue_t`
-  * The queue itself.
-  * You must initialise it with `queue_new()`.
-* `struct queue_node`
-  * Used internally, you will never see it.
+```c
+// Used internally
+struct queue_node {};
 
+
+// The queue itself.
+// You must initialise it with `queue_new()`.
+typedef struct {
+        struct queue_node *head;
+        struct queue_node *tail;
+        size_t size;
+} queue_t;
+```
 
 ## Available functions
 
 ### Constructor
 * `queue_t queue_new()`
-  * Returns an initialised queue. Its return value must be assigned to newly created variables before performing any other operations.
+	* Returns an initialised queue. Its return value must be assigned to newly created variables before performing any other operations.
 
 
 ### Size
 * `bool queue_empty(queue_t)`
-  * Returns true, if queue is empty.
+	* Returns true, if queue is empty.
 * `size_t queue_size(queue_t)`
-  * Returns queue size.
+	* Returns queue size.
 
 
 ### Insertion & Deletion
 * `int queue_push(queue_t*, void*)`
-  * Pushes new element to the queue.
-  * Returns nonzero value on success
+	* Pushes new element to the queue.
+	* Returns nonzero value on success
 * `void *queue_pop(queue_t*)`
-  * Pops last element from the queue and returns it.
-  * If empty, returns NULL.
+	* Pops last element from the queue and returns it.
+	* If empty, returns NULL.
 
 
 ### Access
 * `void *queue_front(queue_t)`
-  * Returns first element from the queue.
-  * If empty, returns NULL.
+	* Returns first element from the queue.
+	* If empty, returns NULL.
 
 
 ## Very important information

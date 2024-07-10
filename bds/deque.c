@@ -29,16 +29,6 @@ void deque_free(deque_t *restrict Q)
         *Q = deque_new();
 }
 
-bool deque_empty(const deque_t Q)
-{
-        return Q.size == 0;
-}
-
-size_t deque_size(const deque_t Q)
-{
-        return Q.size;
-}
-
 
 int deque_resize(deque_t *restrict Q, size_t size)
 {

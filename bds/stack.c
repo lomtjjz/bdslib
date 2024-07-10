@@ -23,16 +23,6 @@ stack_t stack_new()
 	return (stack_t){NULL, NULL, 0};
 }
 
-bool stack_empty(const stack_t S)
-{
-	return S.size == 0;
-}
-
-size_t stack_size(const stack_t S)
-{
-	return S.size;
-}
-
 
 int stack_push(stack_t *restrict S, void *data)
 {

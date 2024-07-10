@@ -23,16 +23,6 @@ queue_t queue_new()
         return (queue_t){NULL, NULL, 0};
 }
 
-bool queue_empty(const queue_t Q)
-{
-        return Q.size == 0;
-}
-
-size_t queue_size(const queue_t Q)
-{
-        return Q.size;
-}
-
 
 int queue_push(queue_t *restrict Q, void *data)
 {
