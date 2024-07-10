@@ -38,19 +38,19 @@ deque_t deque_new();
 // Frees memory occupied by deque.
 // You must call it after you have finished interracting with deque.
 // You may interact with deque after the call.
-void deque_free(deque_t*);
+void deque_free(deque_t *restrict);
 
 
 // Returns true, if deque is empty.
-bool deque_empty(deque_t);
+bool deque_empty(const deque_t);
 
 // Returns deque size.
-size_t deque_size(deque_t);
+size_t deque_size(const deque_t);
 
 // Reallocates new deque container.
 // If new size is smaller, trims last elements.
 // Returns nonzero value on failure.
-int deque_resize(deque_t*, size_t);
+int deque_resize(deque_t *restrict, size_t);
 
 
 // Inserts new element at the beginning.
@@ -58,39 +58,39 @@ int deque_resize(deque_t*, size_t);
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-int deque_push_front(deque_t*, void*);
+int deque_push_front(deque_t *restrict, void*);
 
 // Inserts new element at the end.
 // Returns nonzero value on failure.
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-int deque_push_back(deque_t*, void*);
+int deque_push_back(deque_t *restrict, void*);
 
 // Removes the first element and returns it.
 // Returns NULL, if already empty.
 //
 // It won't touch the pointer; freeing it is up to the caller.
-void *deque_pop_front(deque_t*);
+void *deque_pop_front(deque_t *restrict);
 
 // Removes the last element and returns it.
 // Returns NULL, if already empty.
 //
 // It won't touch the pointer; freeing it is up to the caller.
-void *deque_pop_back(deque_t*);
+void *deque_pop_back(deque_t *restrict);
 
 
 // Returns element at the specified position.
 // If deque is too small, returns NULL.
-void *deque_at(deque_t, size_t);
+void *deque_at(const deque_t, size_t);
 
 // Returns the first element.
 // Returns NULL, if empty.
-void *deque_front(deque_t);
+void *deque_front(const deque_t);
 
 // Returns the last element.
 // Returns NULL, if empty.
-void *deque_back(deque_t);
+void *deque_back(const deque_t);
 
 
 

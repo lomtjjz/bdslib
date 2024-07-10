@@ -23,24 +23,24 @@ deque_t deque_new()
         return (deque_t){0, 0, 0, 0, NULL};
 }
 
-void deque_free(deque_t *Q)
+void deque_free(deque_t *restrict Q)
 {
         free(Q->data);
         *Q = deque_new();
 }
 
-bool deque_empty(deque_t Q)
+bool deque_empty(const deque_t Q)
 {
         return Q.size == 0;
 }
 
-size_t deque_size(deque_t Q)
+size_t deque_size(const deque_t Q)
 {
         return Q.size;
 }
 
 
-int deque_resize(deque_t *Q, size_t size)
+int deque_resize(deque_t *restrict Q, size_t size)
 {
         if (size == Q->size) return 0;
         if (size == 0) {
@@ -52,7 +52,7 @@ int deque_resize(deque_t *Q, size_t size)
         if (new == NULL) return 1;
 
         if (Q->capacity != 0) {
-                size_t mn = min(Q->size, size);
+                size_t mn = (Q->size < size ? Q->size : size);
                 for (size_t i = 0; i < mn; i++) {
                         new[i] = Q->data[(i + Q->tail) % Q->capacity];
                 }
@@ -66,7 +66,7 @@ int deque_resize(deque_t *Q, size_t size)
 }
 
 
-static size_t __next_size(deque_t Q)
+static size_t __next_size(const deque_t Q)
 {
         // The actual length of size_t is platform-dependent, thus we cannot
         // use __builtin_clzX(). One solution might be just converting
@@ -79,7 +79,7 @@ static size_t __next_size(deque_t Q)
         return (size_t)1<<lg2;
 }
 
-int deque_push_front(deque_t *Q, void *data)
+int deque_push_front(deque_t *restrict Q, void *data)
 {
         if (deque_size(*Q) == Q->capacity) {
                 if (deque_resize(Q, __next_size(*Q))) return 1;
@@ -93,7 +93,7 @@ int deque_push_front(deque_t *Q, void *data)
 }
 
 
-int deque_push_back(deque_t *Q, void *data)
+int deque_push_back(deque_t *restrict Q, void *data)
 {
         if (deque_size(*Q) == Q->capacity) {
                 if (deque_resize(Q, __next_size(*Q))) return 1;
@@ -107,7 +107,7 @@ int deque_push_back(deque_t *Q, void *data)
 }
 
 
-void *deque_pop_front(deque_t *Q)
+void *deque_pop_front(deque_t *restrict Q)
 {
         if (deque_empty(*Q)) return NULL;
 
@@ -117,7 +117,7 @@ void *deque_pop_front(deque_t *Q)
         return Q->data[Q->head];
 }
 
-void *deque_pop_back(deque_t *Q)
+void *deque_pop_back(deque_t *restrict Q)
 {
         if (deque_empty(*Q)) return NULL;
 
@@ -128,19 +128,19 @@ void *deque_pop_back(deque_t *Q)
         return old;
 }
 
-void *deque_at(deque_t Q, size_t at)
+void *deque_at(const deque_t Q, size_t at)
 {
         if (at >= Q.capacity) return NULL;
         return Q.data[(Q.tail + at) % Q.capacity];
 }
 
-void *deque_front(deque_t Q)
+void *deque_front(const deque_t Q)
 {
         if (deque_empty(Q)) return NULL;
         return Q.data[Q.head-1];
 }
 
-void *deque_back(deque_t Q)
+void *deque_back(const deque_t Q)
 {
         if (deque_empty(Q)) return NULL;
         return Q.data[Q.tail];
