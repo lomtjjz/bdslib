@@ -39,64 +39,57 @@ typedef struct {
 // Initialises the list. 
 // Must be used against newly created variables before performing any
 // operations.
-extern void                             list_new(list_t*);
-
-
-// Returns true, if list is empty.
-extern bool                             list_empty(list_t);
-
-// Returns list size.
-extern size_t                           list_size(list_t);
+extern void                             list_new(list_t *restrict);
 
 
 // Inserts new element at the beginning.
 // Returns nonzero value on failure.
-extern int                              list_push_front(list_t*, void*);
+extern int                              list_push_front(list_t *restrict, void*);
 
 // Inserts new element at the end.
 // Returns nonzero value on failure.
-extern int                              list_push_back(list_t*, void*);
+extern int                              list_push_back(list_t *restrict, void*);
 
 // Inserts new element at specified index.
 // Returns nonzero value on failure.
-extern int                              list_insert(list_t*, void*, size_t);
+extern int                              list_insert(list_t *restrict, void*, size_t);;
 
 // Removes the first element and returns it.
 // If empty, returns NULL.
-extern void*                            list_pop_front(list_t*);
+extern void*                            list_pop_front(list_t *restrict);
 
 // Removes the last element and returns it.
 // If empty, returns NULL.
-extern void*                            list_pop_back(list_t*);
+extern void*                            list_pop_back(list_t *restrict);
 
 // Removes the element at specified position and returns it.
 // If list is too small, returns NULL.
-extern void*                            list_erase(list_t*, size_t);
+extern void*                            list_erase(list_t *restrict, size_t);
 
 
 // Returns the element at the specified position.
 // If list is too small, returns NULL.
-extern void*                    list_at(list_t, size_t);
+extern void*                    list_at(const list_t, size_t);
 
 // Returns the first element.
 // If empty, returns NULL.
-extern void*                    list_front(list_t);
+extern void*                    list_front(const list_t);
 
 // Returns the last element.
 // If empty, returns NULL.
-extern void*                    list_back(list_t);
+extern void*                    list_back(const list_t);
 
 
 // Inserts a new node after the provided node.
 // Returns nonzero value on failure.
-extern int                      list_node_insert(struct list_node*, void*);
+extern int                      list_node_insert(struct list_node *restrict, void*);
 
 // Removes the node and returns its value.
 // Returns NULL if provided node is a sentinel node.
-extern void*                    list_node_erase(struct list_node*);
+extern void*                    list_node_erase(struct list_node *restrict);
 
 // Same as `list_node_data()`, except returns the pointer to where
 // `list_node_data()` value is stored.
-extern void**                   __list_node_data(struct list_node*);
+extern void**                   __list_node_data(struct list_node *restrict);
 
 #endif

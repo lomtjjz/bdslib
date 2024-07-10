@@ -41,13 +41,6 @@ typedef struct {
 extern queue_t  queue_new();
 
 
-// Returns true, if queue is empty.
-extern bool     queue_empty(const queue_t);
-
-// Returns queue size.
-extern size_t   queue_size(const queue_t);
-
-
 // Pushes new element to the queue.
 // Returns nonzero value on success.
 //

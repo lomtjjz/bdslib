@@ -35,13 +35,6 @@ typedef struct stack_node {
 extern stack_t  stack_new();
 
 
-//Returns true, if stack is empty.
-extern bool     stack_empty(const stack_t);
-
-// Returns stack size.
-extern size_t   stack_size(const stack_t);
-
-
 // Pushes new element to the stack.
 // Returns nonzero value on success.
 //

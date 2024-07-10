@@ -41,12 +41,6 @@ extern deque_t deque_new();
 extern void deque_free(deque_t *restrict);
 
 
-// Returns true, if deque is empty.
-extern bool deque_empty(const deque_t);
-
-// Returns deque size.
-extern size_t deque_size(const deque_t);
-
 // Reallocates new deque container.
 // If new size is smaller, trims last elements.
 // Returns nonzero value on failure.
