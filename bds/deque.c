@@ -128,10 +128,16 @@ void *deque_pop_back(deque_t *restrict Q)
         return old;
 }
 
-void *deque_at(const deque_t Q, size_t at)
+
+void **__deque_at(const deque_t Q, size_t at)
 {
         if (at >= Q.capacity) return NULL;
-        return Q.data[(Q.tail + at) % Q.capacity];
+        return &Q.data[(Q.tail + at) % Q.capacity];
+}
+
+void *deque_at(const deque_t Q, size_t at)
+{
+        return *__deque_at(Q, at);
 }
 
 void *deque_front(const deque_t Q)

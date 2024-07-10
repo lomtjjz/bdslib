@@ -93,5 +93,9 @@ void *deque_front(const deque_t);
 void *deque_back(const deque_t);
 
 
+// Same as `deque_at()`, except returns the pointer to where `deque_at()`
+// value is stored.
+void **__deque_at(const deque_t, size_t);
+
 
 #endif

@@ -61,6 +61,12 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
   * If empty, returns NULL.
 
 
+### Extra
+* `void **__deque_at(deque_t, size_t)`
+  * Same as `deque_at()`, except returns the pointer to where `deque_at()`
+  value is stored.
+  * May be used for swapping values.
+
 ## Very important information
 
 - Deque is implemented on dynamic array resulting in `amortized O(1)` complexity.
