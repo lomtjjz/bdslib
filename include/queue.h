@@ -40,11 +40,12 @@ typedef struct {
 // performing any other operations.
 extern queue_t  queue_new();
 
+
 // Returns true, if queue is empty.
-extern bool     queue_empty(queue_t);
+extern bool     queue_empty(const queue_t);
 
 // Returns queue size.
-extern size_t   queue_size(queue_t);
+extern size_t   queue_size(const queue_t);
 
 
 // Pushes new element to the queue.
@@ -52,18 +53,18 @@ extern size_t   queue_size(queue_t);
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-extern int      queue_push(queue_t*, void*);
+extern int      queue_push(queue_t *restrict, void*);
 
 // Pops last element from the queue and returns it.
 // If empty, returns NULL.
 //
 // It won't touch the pointer; freeing it is up to the caller.
-extern void*    queue_pop(queue_t*);
+extern void*    queue_pop(queue_t *restrict);
 
 
 // Returns first element from the queue.
 // If empty, returns NULL.
-extern void*    queue_front(queue_t);
+extern void*    queue_front(const queue_t);
 
 
 

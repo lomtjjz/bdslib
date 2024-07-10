@@ -23,18 +23,18 @@ queue_t queue_new()
         return (queue_t){NULL, 0};
 }
 
-bool queue_empty(queue_t Q)
+bool queue_empty(const queue_t Q)
 {
         return Q.size == 0;
 }
 
-size_t queue_size(queue_t Q)
+size_t queue_size(const queue_t Q)
 {
         return Q.size;
 }
 
 
-int queue_push(queue_t *Q, void *data)
+int queue_push(queue_t *restrict Q, void *data)
 {
         struct queue_node *new = (struct queue_node*)malloc(sizeof(struct queue_node));
         if (new == NULL) return 1;
@@ -49,7 +49,7 @@ int queue_push(queue_t *Q, void *data)
         return 0;
 }
 
-extern void *queue_pop(queue_t *Q)
+extern void *queue_pop(queue_t *restrict Q)
 {
         if (queue_empty(*Q)) return NULL;
 
@@ -64,7 +64,7 @@ extern void *queue_pop(queue_t *Q)
         return data;
 }
 
-extern void* queue_front(queue_t Q)
+extern void* queue_front(const queue_t Q)
 {
         if (queue_empty(Q)) return NULL;
         return Q.tail->data;
