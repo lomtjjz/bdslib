@@ -1,6 +1,6 @@
 Header: `list.h`
 
-# Deque
+# List
 If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki/List_(abstract_data_type)) about it.
 
 
