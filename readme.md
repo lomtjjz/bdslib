@@ -9,7 +9,7 @@ Implemented structures:
 * [X] stack
 * [X] queue
 * [X] deque
-* [ ] list
+* [X] list
 * [ ] priority queue
 * [ ] set
 * [ ] map
