@@ -21,16 +21,16 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Used internally.
 struct __queue_node {
-        struct __queue_node *next;
-        void *data;
+	struct __queue_node *next;
+	void *data;
 };
 
 // The queue itself.
 // You must initialise it with `queue_new()`.
 typedef struct {
-        struct __queue_node *head;
-        struct __queue_node *tail;
-        size_t size;
+	struct __queue_node *head;
+	struct __queue_node *tail;
+	size_t size;
 } queue_t;
 
 
@@ -38,7 +38,7 @@ typedef struct {
 // Returns an initialised queue. 
 // Its return value must be assigned to newly created variables before
 // performing any other operations.
-extern queue_t  queue_new();
+extern queue_t	queue_new();
 
 
 // Pushes new element to the queue.
@@ -46,18 +46,18 @@ extern queue_t  queue_new();
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-extern int      queue_push(queue_t *restrict, void*);
+extern int	queue_push(queue_t *restrict, void*);
 
 // Pops last element from the queue and returns it.
 // If empty, returns NULL.
 //
 // It won't touch the pointer; freeing it is up to the caller.
-extern void*    queue_pop(queue_t *restrict);
+extern void*	queue_pop(queue_t *restrict);
 
 
 // Returns first element from the queue.
 // If empty, returns NULL.
-extern void*    queue_front(const queue_t);
+extern void*	queue_front(const queue_t);
 
 
 

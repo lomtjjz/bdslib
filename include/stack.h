@@ -21,15 +21,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Used internally.
 struct __stack_node {
-    struct __stack_node *head;
-    void *data;
+	struct __stack_node *head;
+	void *data;
 };
 
 // The stack itself.
 // You must initialise it with `stack_new()`.
 typedef struct {
-    struct __stack_node *head;
-    size_t size;
+	struct __stack_node *head;
+	size_t size;
 } stack_t;
 
 
@@ -37,7 +37,7 @@ typedef struct {
 // Returns an initialised stack. 
 // Its return value must be assigned to newly created variables before
 // performing any other operations
-extern stack_t  stack_new();
+extern stack_t	stack_new();
 
 
 // Pushes new element to the stack.
@@ -45,7 +45,7 @@ extern stack_t  stack_new();
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-extern int      stack_push(stack_t *restrict, void*);
+extern int	stack_push(stack_t *restrict, void*);
 
 // Pops last element from the stack and returns it.
 // If empty, returns NULL.
@@ -53,12 +53,12 @@ extern int      stack_push(stack_t *restrict, void*);
 // Pops item from the stack and returns it.
 // It won't touch the data; freeing it is up to the caller.
 // If the stack is empty, returns NULL.
-extern void*    stack_pop(stack_t *restrict);
+extern void*	stack_pop(stack_t *restrict);
 
 
 // Returns last element from the stack.
 // If empty, returns NULL.
-extern void*    stack_top(const stack_t);
+extern void*	stack_top(const stack_t);
 
 
 
