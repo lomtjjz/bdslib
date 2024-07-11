@@ -20,42 +20,42 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 queue_t queue_new()
 {
-        return (queue_t){NULL, NULL, 0};
+	return (queue_t){NULL, NULL, 0};
 }
 
 
 int queue_push(queue_t *restrict Q, void *data)
 {
-        struct __queue_node *new = (struct __queue_node*)malloc(sizeof(struct __queue_node));
-        if (new == NULL) return 1;
-        new->data = data;
-        new->next = 0;
+	struct __queue_node *new = (struct __queue_node*)malloc(sizeof(struct __queue_node));
+	if (new == NULL) return 1;
+	new->data = data;
+	new->next = 0;
 
-        if (!Q->size) Q->tail = new;
-        else Q->head->next = new;
+	if (!Q->size) Q->tail = new;
+	else Q->head->next = new;
 
-        Q->head = new;
-        Q->size++;
-        return 0;
+	Q->head = new;
+	Q->size++;
+	return 0;
 }
 
 extern void *queue_pop(queue_t *restrict Q)
 {
-        if (!Q->size) return NULL;
+	if (!Q->size) return NULL;
 
-        struct __queue_node *old = Q->tail;
-        void *data = old->data;
+	struct __queue_node *old = Q->tail;
+	void *data = old->data;
 
-        if (Q->tail == Q->head) Q->head = 0;
-        Q->tail = Q->tail->next;
-        
-        free(old);
-        Q->size--;
-        return data;
+	if (Q->tail == Q->head) Q->head = 0;
+	Q->tail = Q->tail->next;
+	
+	free(old);
+	Q->size--;
+	return data;
 }
 
 extern void* queue_front(const queue_t Q)
 {
-        if (!Q.size) return NULL;
-        return Q.tail->data;
+	if (!Q.size) return NULL;
+	return Q.tail->data;
 }
