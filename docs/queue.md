@@ -8,17 +8,15 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
 
 
 ```c
-// Used internally
-struct queue_node {};
+// Used internally.
+struct __stack_node {};
 
-
-// The queue itself.
-// You must initialise it with `queue_new()`.
+// The stack itself.
+// You must initialise it with `stack_new()`.
 typedef struct {
-        struct queue_node *head;
-        struct queue_node *tail;
-        size_t size;
-} queue_t;
+    struct __stack_node *head;
+    size_t size;
+} stack_t;
 ```
 
 ## Available functions

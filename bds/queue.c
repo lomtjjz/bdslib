@@ -26,7 +26,7 @@ queue_t queue_new()
 
 int queue_push(queue_t *restrict Q, void *data)
 {
-        struct queue_node *new = (struct queue_node*)malloc(sizeof(struct queue_node));
+        struct __queue_node *new = (struct __queue_node*)malloc(sizeof(struct __queue_node));
         if (new == NULL) return 1;
         new->data = data;
         new->next = 0;
@@ -43,7 +43,7 @@ extern void *queue_pop(queue_t *restrict Q)
 {
         if (!Q->size) return NULL;
 
-        struct queue_node *old = Q->tail;
+        struct __queue_node *old = Q->tail;
         void *data = old->data;
 
         if (Q->tail == Q->head) Q->head = 0;

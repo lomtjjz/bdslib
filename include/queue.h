@@ -20,16 +20,16 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // Used internally.
-struct queue_node {
-        struct queue_node *next;
+struct __queue_node {
+        struct __queue_node *next;
         void *data;
 };
 
 // The queue itself.
 // You must initialise it with `queue_new()`.
 typedef struct {
-        struct queue_node *head;
-        struct queue_node *tail;
+        struct __queue_node *head;
+        struct __queue_node *tail;
         size_t size;
 } queue_t;
 

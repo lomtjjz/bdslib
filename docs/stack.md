@@ -9,7 +9,7 @@ If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki
 ```c
 // The stack itself.
 // You must initialise it with `stack_new()`.
-typedef struct stack_node {
+typedef struct {
 	struct stack_node *head;
 	void *data;
 	size_t size;

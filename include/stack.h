@@ -17,6 +17,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include <stddef.h>
 
+
+
+// Used internally.
 struct __stack_node {
     struct __stack_node *head;
     void *data;
