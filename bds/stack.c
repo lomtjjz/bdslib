@@ -20,13 +20,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 stack_t stack_new()
 {
-	return (stack_t){NULL, NULL, 0};
+	return (stack_t){NULL, 0};
 }
 
 
 int stack_push(stack_t *restrict S, void *data)
 {
-	struct stack_node *new = (struct stack_node*)malloc(sizeof(struct stack_node));
+	struct __stack_node *new = (struct __stack_node*)malloc(sizeof(struct __stack_node));
 	if (new == NULL) return 1;
 	new->data = data;
 
@@ -43,7 +43,7 @@ void* stack_pop(stack_t *restrict S)
 
 	void *data = S->head->data;
 
-	stack_t *prev = S->head->head;
+	struct __stack_node *prev = S->head->head;
 	free(S->head);
 	S->head = prev;
 	

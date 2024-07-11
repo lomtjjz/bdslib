@@ -17,13 +17,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include <stddef.h>
 
-
+struct __stack_node {
+    struct __stack_node *head;
+    void *data;
+};
 
 // The stack itself.
 // You must initialise it with `stack_new()`.
-typedef struct stack_node {
-    struct stack_node *head;
-    void *data;
+typedef struct {
+    struct __stack_node *head;
     size_t size;
 } stack_t;
 
