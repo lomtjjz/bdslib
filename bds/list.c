@@ -21,95 +21,95 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 void list_new(list_t *L)
 {
-        L->size = 0;
+	L->size = 0;
 
-        L->sentinel.sentinel = &L->sentinel;
-        L->sentinel.prev = &L->sentinel;
-        L->sentinel.next = &L->sentinel;
-        L->sentinel.data = L;
+	L->sentinel.sentinel = &L->sentinel;
+	L->sentinel.prev = &L->sentinel;
+	L->sentinel.next = &L->sentinel;
+	L->sentinel.data = L;
 }
 
 
 static struct list_node *__list_at(list_t *L, size_t at)
 {
-        if (L->size <= at) return NULL;
-        struct list_node *it = &L->sentinel;
+	if (L->size <= at) return NULL;
+	struct list_node *it = &L->sentinel;
 
-        if (at <= L->size/2) {
-                at = 0;
-                it = it->next;
-                while (at--) it = it->next;
-        } else {
-                at = L->size-at;
-                it = it->prev;
-                while (at--) it = it->prev;
-        }
+	if (at <= L->size/2) {
+		at = 0;
+		it = it->next;
+		while (at--) it = it->next;
+	} else {
+		at = L->size-at;
+		it = it->prev;
+		while (at--) it = it->prev;
+	}
 
-        return it;
+	return it;
 }
 
 
 int list_push_front(list_t *L, void *data)
 {
-        return list_node_insert(&L->sentinel, data);
+	return list_node_insert(&L->sentinel, data);
 }
 
 int list_push_back(list_t *L, void *data)
 {
-        return list_node_insert(L->sentinel.prev, data);
+	return list_node_insert(L->sentinel.prev, data);
 }
 
 int list_insert(list_t *L, void *data, size_t at)
 {
-        if (at > L->size) return 1;
+	if (at > L->size) return 1;
 
-        struct list_node *it = __list_at(L, at);
-        if (it == NULL) return 1;
-        
-        return list_node_insert(it, data);
+	struct list_node *it = __list_at(L, at);
+	if (it == NULL) return 1;
+	
+	return list_node_insert(it, data);
 }
 
 
 void *list_pop_front(list_t *L)
 {
-        if (!L->size) return NULL;
-        return list_node_erase(L->sentinel.next);
+	if (!L->size) return NULL;
+	return list_node_erase(L->sentinel.next);
 }
 
 void *list_pop_back(list_t *L)
 {
-        if (!L->size) return NULL;
-        return list_node_erase(L->sentinel.prev);
+	if (!L->size) return NULL;
+	return list_node_erase(L->sentinel.prev);
 }
 
 void *list_erase(list_t *L, size_t at)
 {
-        if (at >= L->size) return NULL;
+	if (at >= L->size) return NULL;
 
-        struct list_node *old = __list_at(L, at);
-        if (old == NULL) return NULL;
+	struct list_node *old = __list_at(L, at);
+	if (old == NULL) return NULL;
 
-        return list_node_erase(old);
+	return list_node_erase(old);
 }
 
 
 void *list_front(list_t L)
 {
-        if (!L.size) return NULL;
-        return L.sentinel.next->data;
+	if (!L.size) return NULL;
+	return L.sentinel.next->data;
 }
 
 void *list_back(list_t L)
 {
-        if (!L.size) return NULL;
-        return L.sentinel.prev->data;
+	if (!L.size) return NULL;
+	return L.sentinel.prev->data;
 }
 
 void *list_at(list_t L, size_t at)
 {
-        if (L.size >= at) return NULL;
-        struct list_node *it = __list_at(&L, at);
-        if (it == NULL) return NULL;
+	if (L.size >= at) return NULL;
+	struct list_node *it = __list_at(&L, at);
+	if (it == NULL) return NULL;
 
-        return it->data;
+	return it->data;
 }
