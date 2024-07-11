@@ -25,7 +25,7 @@ void deque_new(deque_t *restrict Q)
 
 	Q->head = 0;
 	Q->tail = 0;
-	Q->data = 0;
+	Q->data = NULL;
 }
 
 void deque_free(deque_t *restrict Q)
