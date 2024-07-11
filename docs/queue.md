@@ -22,8 +22,8 @@ typedef struct {
 ## Available functions
 
 ### Constructor
-* `queue_t queue_new()`
-	* Returns an initialised queue. Its return value must be assigned to newly created variables before performing any other operations.
+* `void queue_new(queue_t*)`
+	* Initialises the queue. Must be used against newly created variables before performing any operations.
 
 
 ### Size

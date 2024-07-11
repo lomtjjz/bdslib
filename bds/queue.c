@@ -18,9 +18,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../include/queue.h"
 
 
-queue_t queue_new()
+void queue_new(queue_t *Q)
 {
-	return (queue_t){NULL, NULL, 0};
+	Q->head = NULL;
+	Q->tail = NULL;
+	Q->size = 0;
 }
 
 

@@ -31,7 +31,8 @@ char *readel()
 
 int main()
 {
-        deque_t Q = deque_new();
+        deque_t Q;
+        deque_new(&Q);
 
         while (true) {
                 printf("\e[1;1H\e[2J");
@@ -55,9 +56,7 @@ int main()
                 char *el;
                 switch (todo) {
                 default:
-                        printf("Command not recognised!\n");
-                        char ch;
-                        while (ch != EOF && ch != '\n') ch = getc(stdin);
+                        while (todo != EOF && todo != '\n') todo = getc(stdin);
                         break;
                 case EOF:
                         printf("Recieved EOF...\n");
@@ -80,9 +79,11 @@ int main()
                         break;
                 case 'R':
                         free(deque_pop_back(&Q));
+                        while (todo != EOF && todo != '\n') todo = getc(stdin);
                         break;
                 case 'r':
                         free(deque_pop_front(&Q));
+                        while (todo != EOF && todo != '\n') todo = getc(stdin);
                         break;
 
                 case 'q':

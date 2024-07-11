@@ -18,15 +18,20 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <stdlib.h>
 
 
-deque_t deque_new()
+void deque_new(deque_t *restrict Q)
 {
-	return (deque_t){0, 0, 0, 0, NULL};
+	Q->capacity = 0;
+	Q->size = 0;
+
+	Q->head = 0;
+	Q->tail = 0;
+	Q->data = 0;
 }
 
 void deque_free(deque_t *restrict Q)
 {
 	free(Q->data);
-	*Q = deque_new();
+	deque_new(Q);
 }
 
 

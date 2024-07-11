@@ -14,7 +14,8 @@
 
 int main()
 {
-        queue_t Q = queue_new();
+        queue_t Q;
+        queue_new(&Q);
 
         int num = 0;
         while (scanf(" %9d", &num) != EOF) {

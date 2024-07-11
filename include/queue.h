@@ -38,7 +38,7 @@ typedef struct {
 // Returns an initialised queue. 
 // Its return value must be assigned to newly created variables before
 // performing any other operations.
-extern queue_t	queue_new();
+extern void	queue_new(queue_t *restrict);
 
 
 // Pushes new element to the queue.

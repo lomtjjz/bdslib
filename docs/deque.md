@@ -22,8 +22,8 @@ typedef struct {
 ## Available functions
 
 ### Constructor & Destructor
-* `deque_t deque_new()`
-	* Returns an initialised deque. Its return value must be assigned to newly created variables before performing any operations.
+* `void deque_new(deque_t*)`
+	* Initialises the deque. Must be used against newly created variables before performing any operations.
 * `void deque_free(deque_t*)`
 	* Frees memory occupied by deque.
 	* You must call it after you have finished interracting with deque.

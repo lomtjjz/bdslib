@@ -37,7 +37,7 @@ typedef struct {
 // Returns an initialised stack. 
 // Its return value must be assigned to newly created variables before
 // performing any other operations
-extern stack_t	stack_new();
+extern void	stack_new(stack_t *restrict);
 
 
 // Pushes new element to the stack.

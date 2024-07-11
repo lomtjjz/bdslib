@@ -19,8 +19,8 @@ typedef struct {
 ## Available functions
 
 ### Constructor
-* `stack_t stack_new()`
-	* Returns an initialised stack. Its return value must be assigned to newly created variables before performing any other operations
+* `void stack_new(stack_t*)`
+	* Initialises the stack. Must be used against newly created variables before performing any operations.
 
 
 ### Insertion & Deletion

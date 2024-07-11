@@ -33,7 +33,7 @@ typedef struct {
 // Returns an initialised deque. 
 // Its return value must be assigned to newly created variables before
 // performing any operations.
-extern deque_t	deque_new();
+extern void deque_new(deque_t *restrict);
 
 // Frees memory occupied by deque.
 // You must call it after you have finished interracting with deque.

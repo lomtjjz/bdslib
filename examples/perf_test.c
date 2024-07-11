@@ -33,8 +33,9 @@ int main()
         srand(time(NULL));
         printf("list and deque performance compared\n\n");
 
-        deque_t Q = deque_new();
+        deque_t Q;
         list_t L;
+        deque_new(&Q);
         list_new(&L);
 
 

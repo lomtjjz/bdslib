@@ -18,9 +18,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-stack_t stack_new()
+void stack_new(stack_t *S)
 {
-	return (stack_t){NULL, 0};
+	S->head = NULL;
+	S->size = 0;
 }
 
 

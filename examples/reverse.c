@@ -14,7 +14,8 @@
 
 int main()
 {
-        stack_t S = stack_new();
+        stack_t S;
+        stack_new(&S);
 
         int num = 0;
         while (scanf(" %9d", &num) != EOF) {
