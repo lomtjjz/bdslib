@@ -80,13 +80,12 @@ int deque_push_front(deque_t *restrict Q, void *data)
 		if (deque_resize(Q, __next_size(*Q))) return 1;
 	}
 
-	Q->data[Q->head] = data;
-	Q->head = (Q->head + 1) % Q->capacity;
+	Q->tail = (Q->tail - 1 + Q->capacity) % Q->capacity;
+	Q->data[Q->tail] = data;
 
 	Q->size++;
 	return 0;
 }
-
 
 int deque_push_back(deque_t *restrict Q, void *data)
 {
@@ -94,8 +93,8 @@ int deque_push_back(deque_t *restrict Q, void *data)
 		if (deque_resize(Q, __next_size(*Q))) return 1;
 	}
 
-	Q->tail = (Q->tail - 1 + Q->capacity) % Q->capacity;
-	Q->data[Q->tail] = data;
+	Q->data[Q->head] = data;
+	Q->head = (Q->head + 1) % Q->capacity;
 
 	Q->size++;
 	return 0;
@@ -106,21 +105,21 @@ void *deque_pop_front(deque_t *restrict Q)
 {
 	if (!Q->size) return NULL;
 
-	Q->head = (Q->head - 1 + Q->capacity) % Q->capacity;
+	void *old = Q->data[Q->tail];
+	Q->tail = (Q->tail + 1) % Q->capacity;
 
 	Q->size--;
-	return Q->data[Q->head];
+	return old;
 }
 
 void *deque_pop_back(deque_t *restrict Q)
 {
 	if (!Q->size) return NULL;
 
-	void *old = Q->data[Q->tail];
-	Q->tail = (Q->tail + 1) % Q->capacity;
+	Q->head = (Q->head - 1 + Q->capacity) % Q->capacity;
 
 	Q->size--;
-	return old;
+	return Q->data[Q->head];
 }
 
 
@@ -138,11 +137,11 @@ void *deque_at(const deque_t Q, size_t at)
 void *deque_front(const deque_t Q)
 {
 	if (!Q.size) return NULL;
-	return Q.data[Q.head-1];
+	return Q.data[Q.tail];
 }
 
 void *deque_back(const deque_t Q)
 {
 	if (!Q.size) return NULL;
-	return Q.data[Q.tail];
+	return Q.data[Q.head-1];
 }

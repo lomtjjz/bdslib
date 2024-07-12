@@ -67,7 +67,7 @@ int main()
                                 printf("Error getting the new element!");
                                 break;
                         }
-                        deque_push_back(&Q, (void*)el);
+                        deque_push_front(&Q, (void*)el);
                         break;
                 case 'a':
                         el = readel();
@@ -75,7 +75,7 @@ int main()
                                 printf("Error getting the new element!");
                                 break;
                         }
-                        deque_push_front(&Q, (void*)el);
+                        deque_push_back(&Q, (void*)el);
                         break;
                 case 'R':
                         free(deque_pop_back(&Q));
