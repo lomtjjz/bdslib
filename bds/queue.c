@@ -12,10 +12,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#include <bdslib/queue.h>
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "../include/queue.h"
 
 
 void queue_new(queue_t *Q)

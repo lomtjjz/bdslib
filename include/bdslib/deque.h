@@ -14,7 +14,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #ifndef __DEQUE_H
 #define __DEQUE_H
-#include <stdbool.h>
 #include <stddef.h>
 
 

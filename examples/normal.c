@@ -1,8 +1,9 @@
 // Example program demonstaring the usage of queue
 // Reads integers and prints them in normal order
-#include <stdio.h>
+#include <bdslib/queue.h>
+
 #include <stdlib.h>
-#include "../include/queue.h"
+#include <stdio.h>
 
 
 #define ERROR(Q, str, ...) { \

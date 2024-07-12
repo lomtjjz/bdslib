@@ -1,8 +1,9 @@
 // Example program demonstaring the usage of stack
 // Reads integers and prints them in reverse
-#include <stdio.h>
+#include <bdslib/stack.h>
+
 #include <stdlib.h>
-#include "../include/stack.h"
+#include <stdio.h>
 
 
 #define ERROR(S, str, ...) { \

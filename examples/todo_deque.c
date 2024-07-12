@@ -1,8 +1,9 @@
 // Example program demonstaring the usage of deque
 // Reads integers and prints them in normal order
-#include <stdio.h>
+#include <bdslib/deque.h>
+
 #include <stdlib.h>
-#include "../include/deque.h"
+#include <stdio.h>
 
 
 #define ERROR(Q, str, ...) { \

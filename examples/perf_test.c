@@ -1,10 +1,12 @@
 // Example program demonstaring the usage of list and deque
 // Measures the efficiency of different data structures
-#include <time.h>
-#include <stdio.h>
+#include <bdslib/deque.h>
+#include <bdslib/list.h>
+
 #include <stdlib.h>
-#include "../include/deque.h"
-#include "../include/list.h"
+#include <stdio.h>
+#include <time.h>
+
 
 #define DATA_SIZE (10000000)
 #define RAND_SIZE (10000)

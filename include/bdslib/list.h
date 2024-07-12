@@ -14,7 +14,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #ifndef __LIST_H
 #define __LIST_H
-#include <stdbool.h>
 #include <stddef.h>
 
 

@@ -1,5 +1,5 @@
 CC?=gcc
-CCFLAGS?=-Wall -Wextra -O3
+CCFLAGS?=-Wall -Wextra -O3 -I include
 
 TARGET=bdslib.a
 SRCS=$(wildcard bds/*.c)

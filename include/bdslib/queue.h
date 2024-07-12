@@ -12,53 +12,51 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
-#ifndef __STACK_H
-#define __STACK_H
-#include <stdbool.h>
+#ifndef __QUEUE_H
+#define __QUEUE_H
 #include <stddef.h>
 
 
 
 // Used internally.
-struct __stack_node {
-	struct __stack_node *head;
+struct __queue_node {
+	struct __queue_node *next;
 	void *data;
 };
 
-// The stack itself.
-// You must initialise it with `stack_new()`.
+// The queue itself.
+// You must initialise it with `queue_new()`.
 typedef struct {
-	struct __stack_node *head;
+	struct __queue_node *head;
+	struct __queue_node *tail;
 	size_t size;
-} stack_t;
+} queue_t;
 
 
 
-// Returns an initialised stack. 
+// Returns an initialised queue. 
 // Its return value must be assigned to newly created variables before
-// performing any other operations
-extern void	stack_new(stack_t *restrict);
+// performing any other operations.
+extern void	queue_new(queue_t *restrict);
 
 
-// Pushes new element to the stack.
+// Pushes new element to the queue.
 // Returns nonzero value on success.
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
-extern int	stack_push(stack_t *restrict, void*);
+extern int	queue_push(queue_t *restrict, void*);
 
-// Pops last element from the stack and returns it.
+// Pops last element from the queue and returns it.
 // If empty, returns NULL.
 //
-// Pops item from the stack and returns it.
-// It won't touch the data; freeing it is up to the caller.
-// If the stack is empty, returns NULL.
-extern void*	stack_pop(stack_t *restrict);
+// It won't touch the pointer; freeing it is up to the caller.
+extern void*	queue_pop(queue_t *restrict);
 
 
-// Returns last element from the stack.
+// Returns first element from the queue.
 // If empty, returns NULL.
-extern void*	stack_top(const stack_t);
+extern void*	queue_front(const queue_t);
 
 
 

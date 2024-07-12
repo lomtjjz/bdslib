@@ -1,10 +1,12 @@
 // Example program demonstaring the usage of list
 // Quicksort implementation
-#include <time.h>
-#include <stdio.h>
+#include <bdslib/list.h>
+
 #include <stdlib.h>
 #include <unistd.h>
-#include "../include/list.h"
+#include <stdio.h>
+#include <time.h>
+
 
 #define LIST_SIZE       32
 #define SLEEP_MILLIS    100000
