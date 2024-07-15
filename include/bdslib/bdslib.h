@@ -1,4 +1,7 @@
+#include "./cmp.h"
 #include "./deque.h"
 #include "./list.h"
+#include "./macros.h"
+#include "./pqueue.h"
 #include "./queue.h"
 #include "./stack.h"
