@@ -2,6 +2,7 @@
 // Quicksort implementation
 #include <bdslib/list.h>
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
