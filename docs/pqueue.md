@@ -1,7 +1,7 @@
 Header: `pqueue.h`
 
 # Priority queue
-If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) about it.
+If you don't know what it is, here is an [article](https://en.wikipedia.org/wiki/Priority_queue) about it.
 
 
 ## Data types
@@ -48,6 +48,7 @@ PS: you might be interested in how [deque_t](/docs/deque.md) and [cmp_func_t](/d
 
 ## Very important information
 
+- Priority queue is implemented on binary heap resulting in `O(logn)` complexity for insertion/deletion and `O(1)` complexity for retrieving the first element.
 - The queue stores pointers, not the pointed data. The queue will never try to access the data.
 - **Allocating and freeing memory is up to the caller!**
 
