@@ -26,13 +26,6 @@ typedef struct {
 	* Initialises the queue. Must be used against newly created variables before performing any operations.
 
 
-### Size
-* `bool queue_empty(queue_t)`
-	* Returns true, if queue is empty.
-* `size_t queue_size(queue_t)`
-	* Returns queue size.
-
-
 ### Insertion & Deletion
 * `int queue_push(queue_t*, void*)`
 	* Pushes new element to the queue.
