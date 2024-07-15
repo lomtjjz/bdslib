@@ -14,13 +14,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #ifndef __PRIORITY_QUEUE_H
 #define __PRIORITY_QUEUE_H
-#include <stddef.h>
 #include <bdslib/deque.h>
 #include <bdslib/cmp.h>
 
+#include <stddef.h>
 
 
-// The priority queue itself.
+
+// The queue itself.
 // You must initialise it with `pqueue_new()`.
 typedef struct {
 	deque_t heap;
@@ -29,33 +30,33 @@ typedef struct {
 
 
 
-// Initialises the priority queue. 
+// Initialises the queue.
 // Must be used against newly created variables before performing any
 // operations.
 extern void	pqueue_new(pqueue_t *restrict, cmp_func_t);
 
-// Returns the size of priority queue.
+// Returns queue size.
 // Shorthand for `Q.heap.size`.
 extern size_t	pqueue_size(const pqueue_t Q);
 
 
-// Pushes new element to the priority queue.
+// Pushes new element to the queue.
 // Returns nonzero value on success.
 //
 // Please note that it pushes THE POINTER !!!
 // Allocating and freeing data is up to the caller.
 extern int	pqueue_push(pqueue_t *restrict, void*);
 
-// Pops last element from the priority queue and returns it.
+// Pops last element from the queue and returns it.
 // If empty, returns NULL.
 //
 // It won't touch the pointer; freeing it is up to the caller.
 extern void*	pqueue_pop(pqueue_t *restrict);
 
 
-// Returns first element from the priority queue.
+// Returns first element from the queue.
 // If empty, returns NULL.
-extern void*	pqueue_first(const pqueue_t Q);
+extern void*	pqueue_front(const pqueue_t Q);
 
 
 #endif

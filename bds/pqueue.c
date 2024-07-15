@@ -83,7 +83,7 @@ void* pqueue_pop(pqueue_t *restrict Q)
 	return out;
 }
 
-void* pqueue_first(const pqueue_t Q)
+void* pqueue_front(const pqueue_t Q)
 {
 	return deque_front(Q.heap);
 }
