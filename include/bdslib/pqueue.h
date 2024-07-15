@@ -19,6 +19,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <bdslib/cmp.h>
 
 
+
 // The priority queue itself.
 // You must initialise it with `pqueue_new()`.
 typedef struct {
@@ -27,13 +28,16 @@ typedef struct {
 } pqueue_t;
 
 
+
 // Initialises the priority queue. 
 // Must be used against newly created variables before performing any
 // operations.
 extern void	pqueue_new(pqueue_t *restrict, cmp_func_t);
 
-// 
+// Returns the size of priority queue.
+// Shorthand for `Q.heap.size`.
 extern size_t	pqueue_size(const pqueue_t Q);
+
 
 // Pushes new element to the priority queue.
 // Returns nonzero value on success.
@@ -47,6 +51,7 @@ extern int	pqueue_push(pqueue_t *restrict, void*);
 //
 // It won't touch the pointer; freeing it is up to the caller.
 extern void*	pqueue_pop(pqueue_t *restrict);
+
 
 // Returns first element from the priority queue.
 // If empty, returns NULL.
