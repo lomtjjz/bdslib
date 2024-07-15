@@ -14,9 +14,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 #include <bdslib/list.h>
 
-#include <stdbool.h>
 #include <stddef.h>
-#include <stdlib.h>
 
 
 

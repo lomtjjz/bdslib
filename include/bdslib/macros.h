@@ -23,6 +23,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 #define __malloc(x) (x*)malloc(sizeof(x))
+#define __mallocn(x, n) (x*)malloc(sizeof(x)*(n))
 
 
 #endif

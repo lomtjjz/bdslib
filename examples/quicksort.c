@@ -1,5 +1,6 @@
 // Example program demonstaring the usage of list
 // Quicksort implementation
+#include <bdslib/macros.h>
 #include <bdslib/list.h>
 
 #include <stdbool.h>
@@ -13,14 +14,6 @@
 #define SLEEP_MILLIS    100000
 int data[LIST_SIZE];
 list_t L;
-
-
-void swap(void **A, void **B)
-{
-        void *tmp = *A;
-        *A = *B;
-        *B = tmp;
-}
 
 bool flag = false;
 void printall()
@@ -57,12 +50,12 @@ void quicksort(struct list_node *l, struct list_node *r)
                 int b = *(int*)cmp->data;
 
                 if (a <= b) {
-                        swap(&it->data, &m->data);
+                        swap(it->data, m->data);
                         m = m->next;
                 }
                 it = it->next;
         }
-        swap(&cmp->data, &m->data);
+        swap(cmp->data, m->data);
         printall();
 
         quicksort(l, m);

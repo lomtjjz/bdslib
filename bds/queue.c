@@ -12,11 +12,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#include <bdslib/macros.h>
 #include <bdslib/queue.h>
 
-#include <stdbool.h>
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 
 void queue_new(queue_t *Q)
@@ -29,7 +29,7 @@ void queue_new(queue_t *Q)
 
 int queue_push(queue_t *restrict Q, void *data)
 {
-	struct __queue_node *new = (struct __queue_node*)malloc(sizeof(struct __queue_node));
+	struct __queue_node *new = __malloc(struct __queue_node);
 	if (new == NULL) return 1;
 	new->data = data;
 	new->next = 0;

@@ -12,6 +12,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#include <bdslib/macros.h>
 #include <bdslib/stack.h>
 
 #include <stdlib.h>
@@ -28,7 +29,7 @@ void stack_new(stack_t *S)
 
 int stack_push(stack_t *restrict S, void *data)
 {
-	struct __stack_node *new = (struct __stack_node*)malloc(sizeof(struct __stack_node));
+	struct __stack_node *new = __malloc(struct __stack_node);
 	if (new == NULL) return 1;
 	new->data = data;
 

@@ -12,9 +12,9 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#include <bdslib/macros.h>
 #include <bdslib/deque.h>
 
-#include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -44,7 +44,7 @@ int deque_resize(deque_t *restrict Q, size_t size)
 		return 0;
 	}
 
-	void** new = (void**)malloc(sizeof(void*)*size);
+	void** new = __mallocn(void*, size);
 	if (new == NULL) return 1;
 
 	if (Q->capacity != 0) {

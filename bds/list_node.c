@@ -12,11 +12,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
+#include <bdslib/macros.h>
 #include <bdslib/list.h>
 
-#include <stdbool.h>
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 
 
@@ -42,7 +42,7 @@ static void *__unlink(struct list_node *node)
 
 int list_node_insert(struct list_node *node, void *data)
 {
-	struct list_node *new = (struct list_node*)malloc(sizeof(struct list_node));
+	struct list_node *new = __malloc(struct list_node);
 	if (new == NULL) return 1;
 	__link(node, new);
 	
