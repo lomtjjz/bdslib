@@ -10,7 +10,7 @@ Implemented structures:
 * [X] queue
 * [X] deque
 * [X] list
-* [ ] priority queue
+* [X] priority queue
 * [ ] set
 * [ ] map
 
