@@ -2,6 +2,7 @@
 // Reads integers and prints them in normal order
 #include <bdslib/deque.h>
 
+#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 
