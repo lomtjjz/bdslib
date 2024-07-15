@@ -102,14 +102,14 @@ See [examples/perf_test.c](/examples/perf_test.c)
 ### How to iterate through a list
 ```c
 struct list_node *it = list_sentinel(&L);
-do {
+while ((it = list_next(L)) != list_sentinel(L)) {
 	// ...iterate in normal order
-} while ((it = list_next(L)) != list_sentinel(L));
+}
 ```
 
 ```c
 struct list_node *it = list_sentinel(&L);
-do {
+while ((it = list_prev(L)) != list_sentinel(L)) {
 	// ...iterate in reverse order
-} while ((it = list_prev(L)) != list_sentinel(L));
+}
 ```
